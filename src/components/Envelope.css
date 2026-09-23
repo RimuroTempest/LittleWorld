@@ -1,0 +1,180 @@
+.envelope-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 12vh 24px 16vh;
+}
+
+.envelope-section__inner {
+  max-width: var(--measure);
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s var(--ease-soft), transform 0.9s var(--ease-soft);
+}
+
+.envelope-section__inner.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.envelope-section__title {
+  margin-top: 4px;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--cream-100);
+}
+
+.envelope-section__desc {
+  margin-top: 14px;
+  color: var(--ink-muted);
+}
+
+.envelope {
+  margin: 48px auto 0;
+  display: flex;
+  justify-content: center;
+  perspective: 1400px;
+}
+
+.envelope__hitbox {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.envelope__hitbox:disabled {
+  cursor: default;
+}
+
+.envelope__body {
+  position: relative;
+  width: min(340px, 82vw);
+  height: 210px;
+  border-radius: 6px;
+  background: linear-gradient(165deg, var(--burgundy-700), var(--burgundy-800));
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 40px rgba(180, 150, 225, 0.08);
+  transition: box-shadow 0.6s ease;
+}
+
+.envelope__flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 105px;
+  background: linear-gradient(160deg, var(--burgundy-800), var(--plum-900));
+  clip-path: polygon(0 0, 100% 0, 50% 88%);
+  transform-origin: top center;
+  transition: transform 0.8s var(--ease-soft);
+  z-index: 3;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.envelope__seal {
+  position: absolute;
+  top: 78px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--rose-300), var(--burgundy-700));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cream-100);
+  font-size: 0.85rem;
+  z-index: 4;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.envelope__paper {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 8px;
+  height: 90%;
+  border-radius: 4px;
+  background: linear-gradient(180deg, var(--cream-100), var(--cream-200));
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, var(--cream-100), var(--cream-200));
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(6%) rotate(0deg);
+  transition: transform 1s var(--ease-soft), height 1s var(--ease-soft),
+    box-shadow 1s var(--ease-soft);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.envelope__letter {
+  padding: 26px 22px;
+  color: #2c1a20;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  text-align: left;
+  overflow-y: auto;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.5s;
+}
+
+.envelope__letter p {
+  margin: 0 0 14px 0;
+}
+
+.envelope__label {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+}
+
+/* Open state */
+.envelope--open .envelope__flap {
+  transform: rotateX(-165deg);
+  box-shadow: 0 -6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.envelope--open .envelope__seal {
+  opacity: 0;
+  transform: translate(-50%, -14px) scale(0.8);
+}
+
+.envelope--open .envelope__body {
+  height: auto;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.5), 0 0 60px rgba(180, 150, 225, 0.12);
+}
+
+.envelope--open .envelope__paper {
+  position: relative;
+  left: 0;
+  right: 0;
+  height: auto;
+  min-height: 480px;
+  transform: translateY(-8px) rotate(-0.6deg);
+  margin: 14px 4% 4%;
+  width: 92%;
+}
+
+.envelope--open .envelope__letter {
+  opacity: 1;
+  overflow-y: visible;
+}
+
+@media (max-width: 480px) {
+  .envelope--open .envelope__paper {
+    min-height: 560px;
+  }
+  .envelope__letter {
+    font-size: 0.9rem;
+  }
+}

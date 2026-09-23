@@ -1,0 +1,47 @@
+.particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particles__dot {
+  position: absolute;
+  bottom: -20px;
+  border-radius: 50%;
+  opacity: 0;
+  animation-name: floatUp;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.particles__dot--lavender {
+  background: var(--lavender-400);
+  box-shadow: 0 0 8px 2px var(--glow-purple);
+}
+
+.particles__dot--rose {
+  background: var(--rose-300);
+  box-shadow: 0 0 8px 2px rgba(215, 163, 172, 0.3);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(-52vh) translateX(12px);
+  }
+  90% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(-8px);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,63 @@
+.collectible {
+  position: absolute;
+  z-index: 3;
+}
+
+.collectible--left {
+  left: -6px;
+}
+
+.collectible--right {
+  right: -6px;
+}
+
+@media (max-width: 720px) {
+  .collectible--left {
+    left: 2px;
+  }
+  .collectible--right {
+    right: 2px;
+  }
+}
+
+.collectible__button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: rgba(215, 163, 172, 0.45);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.collectible__button:hover {
+  color: var(--rose-300);
+  transform: scale(1.15);
+  text-shadow: 0 0 10px rgba(215, 163, 172, 0.6);
+}
+
+.collectible__button--found {
+  color: var(--lavender-300);
+  text-shadow: 0 0 10px var(--glow-purple);
+}
+
+.collectible__message {
+  position: absolute;
+  top: 34px;
+  right: 0;
+  width: 190px;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  background: rgba(58, 26, 40, 0.9);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  backdrop-filter: blur(6px);
+}
+
+.collectible--left .collectible__message {
+  right: auto;
+  left: 0;
+}

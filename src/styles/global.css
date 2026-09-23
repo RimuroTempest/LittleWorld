@@ -1,0 +1,137 @@
+/* ────────────────────────────────────────────────────────────
+   Design tokens
+   ─────────────────────────────────────────────────────────── */
+:root {
+  --plum-950: #170c13;
+  --plum-900: #1f1019;
+  --burgundy-800: #2c1420;
+  --burgundy-700: #3a1a28;
+  --lavender-400: #b6a0dd;
+  --lavender-300: #cdbdec;
+  --rose-300: #d7a3ac;
+  --cream-100: #f3ebe6;
+  --cream-200: #e6d9d4;
+  --ink-muted: rgba(243, 235, 230, 0.62);
+  --ink-faint: rgba(243, 235, 230, 0.4);
+  --glow-purple: rgba(180, 150, 225, 0.35);
+  --line: rgba(243, 235, 230, 0.14);
+
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "Work Sans", "Segoe UI", sans-serif;
+
+  --measure: 620px;
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: var(--lavender-400) var(--plum-950);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at 50% -10%, var(--burgundy-700) 0%, var(--plum-950) 55%),
+    var(--plum-950);
+  color: var(--cream-100);
+  font-family: var(--font-body);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Subtle grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 450;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Cute scrollbar
+   ─────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--plum-950);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--lavender-400), var(--rose-300));
+  border-radius: 999px;
+  border: 2px solid var(--plum-950);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--lavender-300), var(--rose-300));
+}
+
+/* ────────────────────────────────────────────────────────────
+   Layout helpers
+   ─────────────────────────────────────────────────────────── */
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.kicker {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: var(--lavender-300);
+  font-weight: 400;
+  margin-bottom: 18px;
+}
+
+.tags {
+  margin-top: 28px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+a, button {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--lavender-300);
+  outline-offset: 3px;
+  border-radius: 4px;
+}

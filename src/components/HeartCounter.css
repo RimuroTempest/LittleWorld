@@ -1,0 +1,34 @@
+.heart-counter {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 20;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: rgba(44, 20, 32, 0.6);
+  backdrop-filter: blur(6px);
+  animation: appear 0.5s var(--ease-soft);
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .heart-counter {
+    left: 14px;
+    bottom: 14px;
+    font-size: 0.65rem;
+    padding: 6px 10px;
+  }
+}
